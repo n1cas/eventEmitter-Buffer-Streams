@@ -1,0 +1,24 @@
+{
+  "name": "gmp-node",
+  "version": "0.0.2",
+  "description": "Project developed during GMP node course.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "npx nodemon src/index.ts"
+  },
+  "directories": {
+    "lib": "lib",
+    "src": "src"
+  },
+  "keywords": [],
+  "author": "Mykola Kurlyak",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
