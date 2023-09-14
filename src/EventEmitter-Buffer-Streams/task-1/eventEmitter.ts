@@ -33,7 +33,7 @@ export class myEmitter {
     return this.removeListener(eventName, fn);
   };
 
-  public once(eventName: string, fn: any):this {
+  public once(eventName: string, fn: any): this {
     this.listeners[eventName] = this.listeners[eventName] || [];
     const onceWrapper = () => {
       fn();
@@ -43,7 +43,7 @@ export class myEmitter {
     return this;
   }
 
-  emit(eventName: string, ...args: any) {
+  public emit(eventName: string, ...args: any): boolean {
     let fns = this.listeners[eventName];
     if (!fns) return false;
     fns.forEach((f) => {
@@ -52,12 +52,12 @@ export class myEmitter {
     return true;
   }
 
-  listenerCount(eventName: string): number {
+  public listenerCount(eventName: string): number {
     let fns = this.listeners[eventName] || [];
     return fns.length;
   }
 
-  rawListeners(eventName: string) {
+  public rawListeners(eventName: string) {
     return this.listeners[eventName];
   }
 };
@@ -66,11 +66,11 @@ export class myEmitter {
 const emitter = new EventEmitter();
 
 function c1() {
-    console.log('an event occurred!');
+  console.log('an event occurred!');
 }
 
 function c2() {
-    console.log('yet another event occurred!');
+  console.log('yet another event occurred!');
 }
 
 emitter.on('eventOne', c1); // Register for eventOne
@@ -81,15 +81,13 @@ emitter.once('eventOnce', () => console.log('eventOnce once fired'));
 emitter.once('init', () => console.log('init once fired'));
 
 // Register for 'status' event with parameters
-emitter.on('status', (code, msg)=> console.log(`Got ${code} and ${msg}`));
-
+emitter.on('status', (code, msg) => console.log(`Got ${code} and ${msg}`));
 
 emitter.emit('eventOne');
 
 // Emit 'eventOnce' -> After this the eventOnce will be
 // removed/unregistered automatically
 emitter.emit('eventOnce');
-
 
 emitter.emit('eventOne');
 emitter.emit('init');
