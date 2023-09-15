@@ -1,7 +1,7 @@
 import EventEmitter from "events";
 import axios from "axios";
 
-class WithTime extends EventEmitter {
+export class WithTime extends EventEmitter {
   async execute(asyncFunction: any, ...args: any): Promise<any> {
     this.emit('begin');
     console.log('Execution started');
@@ -27,19 +27,10 @@ class WithTime extends EventEmitter {
   }
 }
 
-function fetchDataFromUrl(url: string): Promise<unknown> {
+export function fetchDataFromUrl(url: string): Promise<unknown> {
   return axios.get(url)
     .then((response: any) => response.data)
     .catch((error) => {
       throw error;
     });
 }
-
-const withTime = new WithTime();
-
-withTime.on('begin', () => console.log('About to execute'));
-withTime.on('end', () => console.log('Done with execute'));
-
-console.log(withTime.rawListeners("end"));
-
-withTime.execute(fetchDataFromUrl, 'https://jsonplaceholder.typicode.com/posts/1');

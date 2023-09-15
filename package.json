@@ -6,7 +6,10 @@
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "build:live": "npx nodemon src/index.ts"
+    "build:task-1": "npx nodemon src/task-1.ts",
+    "build:task-2": "npx nodemon src/task-2.ts",
+    "build:task-3": "npx nodemon src/task-3.ts"
+
   },
   "directories": {
     "lib": "lib",
@@ -22,6 +25,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "csvtojson": "^2.0.10"
   }
 }
