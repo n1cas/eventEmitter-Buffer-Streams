@@ -1,25 +1,25 @@
 export class myEmitter {
 
-  listeners: Record<string, any[]> = {};
+  listeners: Record<string, Function[]> = {};
 
-  public addListener(eventName: string, fn: any): this {
+  public addListener(eventName: string, fn: Function): this {
     this.listeners[eventName] = this.listeners[eventName] || [];
     this.listeners[eventName].push(fn);
     return this;
   }
 
-  public on(eventName: string, fn: any): this {
+  public on(eventName: string, fn: Function): this {
     return this.addListener(eventName, fn);
   };
 
 
-  public removeListener(eventName: string, fn: any): this {
+  public removeListener(eventName: string, fn: Function): this {
     let lis = this.listeners[eventName];
     if (!lis) {
       return this;
     }
 
-    for (let i = lis.length; i > 0; i--) {
+    for (let i = lis.length - 1; i > 0; i--) {
       if (lis[i] === fn) {
         lis.splice(i, 1);
         break;
@@ -28,11 +28,11 @@ export class myEmitter {
     return this;
   }
 
-  public off(eventName: string, fn: any): this {
+  public off(eventName: string, fn: Function): this {
     return this.removeListener(eventName, fn);
   };
 
-  public once(eventName: string, fn: any): this {
+  public once(eventName: string, fn: Function): this {
     this.listeners[eventName] = this.listeners[eventName] || [];
     const onceWrapper = () => {
       fn();

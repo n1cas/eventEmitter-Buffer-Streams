@@ -1,7 +1,7 @@
-import EventEmitter from "events";
 import axios from "axios";
+import { myEmitter } from "../task-1/myEventEmitter";
 
-export class WithTime extends EventEmitter {
+export class WithTime extends myEmitter {
   async execute(asyncFunction: any, ...args: any): Promise<any> {
     this.emit('begin');
     console.log('Execution started');
